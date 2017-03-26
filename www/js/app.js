@@ -1,10 +1,12 @@
-var config = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "your_app_name.firebaseapp.com",
-  databaseURL: "https://your_app_name.firebaseio.com",
-  storageBucket: "your_app_name.appspot.com"
-};
-firebase.initializeApp(config);
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAiTNlLlj4nDzycNfT8MJvYUwT5byZiRKc",
+    authDomain: "lovermobile-3a267.firebaseapp.com",
+    databaseURL: "https://lovermobile-3a267.firebaseio.com",
+    storageBucket: "lovermobile-3a267.appspot.com",
+    messagingSenderId: "182084865307"
+  };
+  firebase.initializeApp(config);
 
 var app = angular.module('starter', ['ionic', 'firebase'])
 
