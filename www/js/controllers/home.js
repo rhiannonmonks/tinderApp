@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('HomeCtrl', function(Auth, $ionicLoading, $scope, Like, Match, uid) {
+app.controller('HomeCtrl', function(Auth, $ionicLoading, $ionicModal, $scope, Like, Match, uid) {
 
   var home = this;
   home.currentIndex = null;
@@ -85,4 +85,23 @@ app.controller('HomeCtrl', function(Auth, $ionicLoading, $scope, Like, Match, ui
       home.currentCardUid = home.profiles[home.currentIndex].$id;
     }
   };
+
+
+  $ionicModal.fromTemplateUrl('templates/info.html', {
+    scope: $scope
+  })
+  .then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  home.openModal = function() {
+    home.info = Auth.getProfile(home.currentCardUid);
+    $scope.modal.show();
+  };
+
+  home.closeModal = function() {
+    $scope.modal.hide();
+  };
+
+  
 });
