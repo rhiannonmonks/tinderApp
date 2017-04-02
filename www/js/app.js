@@ -50,6 +50,12 @@ var app = angular.module('starter', ['ionic', 'firebase', 'ionic.contrib.ui.tind
         templateUrl: 'templates/profile.html',
         controller: 'ProfileCtrl as prof',
         resolve: {
+          history: function($ionicHistory) {
+            $ionicHistory.nextViewOptions({
+              disableBack: true
+            });
+          },  
+
           auth: function($state, Auth) {
             return Auth.requireAuth().catch(function() {
               $state.go('login');
@@ -73,6 +79,36 @@ var app = angular.module('starter', ['ionic', 'firebase', 'ionic.contrib.ui.tind
         templateUrl: 'templates/home.html',
         controller: 'HomeCtrl as home',
         resolve: {
+          auth: function($state, Auth) {
+            return Auth.requireAuth().catch(function() {
+              $state.go('login');
+            });
+          },
+
+          uid: function(Auth) {
+            return Auth.requireAuth()
+              .then(function(auth) {
+                return auth.uid;
+              });
+          }
+        }
+      }
+    }
+  })
+
+  .state('app.match', {
+    url: '/match',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/match.html',
+        controller: 'MatchCtrl as matc',
+        resolve: {
+          history: function($ionicHistory) {
+            $ionicHistory.nextViewOptions({
+              disableBack: true
+            });
+          },          
+           
           auth: function($state, Auth) {
             return Auth.requireAuth().catch(function() {
               $state.go('login');
