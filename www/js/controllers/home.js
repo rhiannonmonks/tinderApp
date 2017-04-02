@@ -1,13 +1,17 @@
 'use strict';
 
-app.controller('HomeCtrl', function(Auth, $scope) {
+app.controller('HomeCtrl', function(Auth, $scope, Like, uid) {
 
   var home = this;
   home.currentIndex = null;
+  home.currentCardUid = null;
 
   var maxAge = null;
   var men = null;
   var women = null;
+  var currentUid = uid;
+
+  console.log(currentUid);
 
   function init() {
     home.profiles = [];
@@ -31,6 +35,7 @@ app.controller('HomeCtrl', function(Auth, $scope) {
 
       if (home.profiles.length > 0) {
         home.currentIndex = home.profiles.length - 1;
+        home.currentCardUid = home.profiles[home.currentIndex].$id;
       }
 
 
@@ -46,7 +51,8 @@ app.controller('HomeCtrl', function(Auth, $scope) {
     console.log('NOPE');
   };
   
-  home.like = function(index) {
+  home.like = function(index, like_uid) {
+    Like.addLike(currentUid, like_uid);
     home.cardRemoved(index);
     console.log('LIKE');
   };
@@ -56,6 +62,7 @@ app.controller('HomeCtrl', function(Auth, $scope) {
 
     if (home.profiles.length > 0) {
       home.currentIndex = home.profiles.length - 1;
+      home.currentCardUid = home.profiles[home.currentIndex].$id;
     }
   };
 });
