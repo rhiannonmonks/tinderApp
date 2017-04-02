@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('HomeCtrl', function(Auth, $ionicLoading, $scope, Like, uid) {
+app.controller('HomeCtrl', function(Auth, $ionicLoading, $scope, Like, Match, uid) {
 
   var home = this;
   home.currentIndex = null;
@@ -20,9 +20,6 @@ app.controller('HomeCtrl', function(Auth, $ionicLoading, $scope, Like, uid) {
   $scope.hide = function() {
     $ionicLoading.hide();
   }
-
-
-  console.log(currentUid);
 
   function init() {
 
@@ -74,6 +71,8 @@ app.controller('HomeCtrl', function(Auth, $ionicLoading, $scope, Like, uid) {
   
   home.like = function(index, like_uid) {
     Like.addLike(currentUid, like_uid);
+    Match.checkMatch(currentUid, like_uid);
+    
     home.cardRemoved(index);
     console.log('LIKE');
   };
