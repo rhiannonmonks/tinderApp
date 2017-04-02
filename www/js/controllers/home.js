@@ -3,6 +3,7 @@
 app.controller('HomeCtrl', function(Auth, $scope) {
 
   var home = this;
+  home.currentIndex = null;
 
   var maxAge = null;
   var men = null;
@@ -27,11 +28,34 @@ app.controller('HomeCtrl', function(Auth, $scope) {
           home.profiles.push(item);
         }
       }
+
+      if (home.profiles.length > 0) {
+        home.currentIndex = home.profiles.length - 1;
+      }
+
+
     });
-  }
+  };
 
   $scope.$on('$ionicView.enter', function(e) {
     init();
-  })
+  });
+
+  home.nope = function(index) {
+    home.cardRemoved(index);
+    console.log('NOPE');
+  };
   
+  home.like = function(index) {
+    home.cardRemoved(index);
+    console.log('LIKE');
+  };
+
+  home.cardRemoved = function(index) {
+    home.profiles.splice(index, 1);
+
+    if (home.profiles.length > 0) {
+      home.currentIndex = home.profiles.length - 1;
+    }
+  };
 });
