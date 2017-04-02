@@ -3,10 +3,12 @@
     apiKey: "AIzaSyAiTNlLlj4nDzycNfT8MJvYUwT5byZiRKc",
     authDomain: "lovermobile-3a267.firebaseapp.com",
     databaseURL: "https://lovermobile-3a267.firebaseio.com",
+    projectId: "lovermobile-3a267",
     storageBucket: "lovermobile-3a267.appspot.com",
     messagingSenderId: "182084865307"
   };
   firebase.initializeApp(config);
+
 
 var app = angular.module('starter', ['ionic', 'firebase'])
 
@@ -45,7 +47,21 @@ var app = angular.module('starter', ['ionic', 'firebase'])
     url: '/profile',
     views: {
       'menuContent': {
-        templateUrl: 'templates/profile.html'
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileCtrl as prof',
+        resolve: {
+          auth: function($state, Auth) {
+            return Auth.requireAuth().catch(function() {
+              $state.go('login');
+            });
+          },
+
+          profile: function(Auth) {
+            return Auth.requireAuth().then(function(auth) {
+              return Auth.getProfile(auth.uid).$loaded();
+            });
+          }
+        }
       }
     }
   })
