@@ -159,3 +159,15 @@ td-card img {
   border: 0;
   background-color: #f4f4f4
 }
+
+.presence {
+  border-radius: 50%;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #ab9ba9;
+}
+
+.online {
+  background: #99d04a;
+}
