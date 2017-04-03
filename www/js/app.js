@@ -96,6 +96,7 @@ var app = angular.module('starter', ['ionic', 'firebase', 'ionic.contrib.ui.tind
     }
   })
 
+
   .state('app.match', {
     url: '/match',
     views: {
@@ -107,7 +108,7 @@ var app = angular.module('starter', ['ionic', 'firebase', 'ionic.contrib.ui.tind
             $ionicHistory.nextViewOptions({
               disableBack: true
             });
-          },          
+          },
            
           auth: function($state, Auth) {
             return Auth.requireAuth().catch(function() {

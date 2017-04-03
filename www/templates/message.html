@@ -1,0 +1,48 @@
+<ion-modal-view cache-view="false" view-title="Messages">
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">Messages to Leo</h1>
+        <div class="buttons">
+            <button class="button button-icon icon ion-close" ng-click="matc.closeMessageModal()"></button>
+        </div>
+    </ion-header-bar>
+
+  <ion-content has-bouncing="true" class="has-header has-footer">
+    <div class="message message-left">
+      <img src="/img/ionic.png"/>
+      <div>
+        Hello
+        <br/>
+        01/01/1900
+      </div>
+    </div>
+    <div class="message message-right">
+      <div>
+        Hello
+        <br/>
+        01/01/1900
+      </div>
+      <img src="/img/ionic.png"/>
+    </div>
+    <div class="message message-left">
+      <img src="/img/ionic.png"/>
+      <div>
+        Hello
+        <br/>
+        01/01/1900
+      </div>
+    </div>
+    <div class="message message-right">
+      <div>
+        Hello
+        <br/>
+        01/01/1900
+      </div>
+      <img src="/img/ionic.png"/>
+    </div>
+  </ion-content>
+
+  <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
+    <input class="item-input" value="" placeholder="Send a message..." required/>
+    <button class="button button-icon icon ion-android-send" type="submit"></button>
+  </ion-footer-bar>
+</ion-modal-view>
